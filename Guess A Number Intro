@@ -1,0 +1,85 @@
+/**
+ * Guess A Number game where the program will randomly generate 
+ * an integer between 1 and 200 inclusive and then will repeatedly 
+ * ask the user for a guess. If the user inputs a negative number, the program
+ * will inform the user to pick a positive number and will go unitl the right number is picked.
+ * 
+ *
+ * @author Tariq Salama
+ * @version 20230912
+ */
+import java.util.Scanner;
+import java.util.Random;
+
+public class GuessANumber {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        Random rnd = new Random();
+        
+        //asks user to input a random seed 
+        System.out.print("Enter a random seed: ");
+        int seed = input.nextInt();
+        rnd.setSeed(seed);
+        
+        //indicates number that was picked
+        int rndNum = rnd.nextInt(200) + 1;
+        System.out.println("DEBUG: The number picked is: " + rndNum);
+        
+        //gives space between program outputs
+        System.out.println();
+        
+        int numGuesses = 0;
+        
+        //asks user to guess a number between 1 and 200
+        System.out.print("Enter a guess between 1 and 200: ");
+        int guess = input.nextInt();
+        numGuesses++;
+        
+        while (guess != rndNum) {
+           
+         //if the guess is correct, it will output "Congratulations! Your guess was correct!"
+        if (guess == rndNum) {
+           System.out.println("Congratulations!  Your guess was correct!");
+        }
+        
+        //if the guessed number is out of range, it will output "Your guess is out of range. Pick a number between 1 and 200." 
+        if (guess < 1 || guess > 200) {
+           System.out.println("Your guess is out of range.  Pick a number between 1 and 200.");
+        }
+        
+        //if the guessed number is less than the random number, it will output "That is not the number."
+      if (guess > rndNum) {
+           System.out.println("That is not the number.");
+        }
+        
+        //if the guessed number is more than the random number, it will output "That is not the number."
+      if (guess < rndNum) {
+           System.out.println("That is not the number.");
+        }
+        
+        numGuesses++;
+        
+        //gives space between program outputs
+        System.out.println();
+        
+        //if the guess was wrong, it prompts the user to enter another number
+        System.out.print("Enter a guess between 1 and 200: ");
+        guess = input.nextInt();
+        
+        } 
+        
+       //if guess was correct, it will output "Congratulations! Your guess was correct!"
+        System.out.println("Congratulations!  Your guess was correct!");
+        
+        //gives space between program outputs
+        System.out.println();
+        
+        //tells the user what number that was picked
+        System.out.println("I had chosen " + rndNum + " as the target number.");
+        
+        //tells the user how many tries it took to get the right number
+        System.out.println("You guessed it in " + numGuesses + " tries.");
+    }
+}
